@@ -1,0 +1,21 @@
+[Unit]
+Description=PuppyCare USB webcam MJPEG stream
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/local/bin/puppycare-camera.sh
+Restart=on-failure
+RestartSec=5
+# Wait up to 30 s for the USB webcam to enumerate on boot
+TimeoutStartSec=30
+
+# Optional — override defaults without editing the script
+# Environment=CAMERA_WIDTH=1280
+# Environment=CAMERA_HEIGHT=720
+# Environment=CAMERA_FPS=20
+
+[Install]
+WantedBy=multi-user.target
